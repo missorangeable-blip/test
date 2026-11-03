@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import json
                                            #requestはフォームに入力されたデータを受け取るための部品
 app = Flask(__name__)
 
+# 起動時にJSONを読み込む
 try:
     with open("tasks.json", "r", encoding="utf-8") as file:
         tasks = json.load(file)
@@ -10,6 +11,7 @@ try:
 except FileNotFoundError:
     tasks = []
 
+# タスク保存関数
 def save_tasks():
     with open("tasks.json", "w", encoding="utf-8") as file:
         json.dump(
@@ -19,6 +21,7 @@ def save_tasks():
             indent=4
         )
 
+# トップページ
 @app.route("/", methods=["GET", "POST"])  #GET..普通にページを開く　POST..フォーム送信
 def home():
 
@@ -35,5 +38,16 @@ def home():
         tasks=tasks
     )
 
+# タスク削除
+@app.route("/delete/<int:index>")
+def delete(index):
+
+    tasks.pop(index)
+
+    save_tasks()
+
+    return redirect("/")
+
+# Flask起動
 if __name__ == "__main__":
     app.run(debug=True)
