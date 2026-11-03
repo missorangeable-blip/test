@@ -30,7 +30,12 @@ def home():
         task = request.form["task"]  #HTMLの name="task" に入っていた文字を取得
 
         if task:
-            tasks.append(task)  #リストの最後に追加
+            tasks.append(
+                {
+                    "task": task,
+                    "done": False
+                }
+            )  #リストの最後に追加
             save_tasks()
 
     return render_template(
@@ -43,6 +48,16 @@ def home():
 def delete(index):
 
     tasks.pop(index)
+
+    save_tasks()
+
+    return redirect("/")
+
+# タスク完了切り替え
+@app.route("/toggle/<int:index>")
+def toggle(index):
+
+    tasks[index]["done"] = not tasks[index]["done"]
 
     save_tasks()
 

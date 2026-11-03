@@ -27,8 +27,22 @@
         {% for task in tasks %}
 
         <li>
+
+            <a href="/toggle/{{ loop.index0 }}">
+
+                {% if task["done"] %}
+
+                    ☑
+
+                {% else %}
+
+                    ☐
+                
+                {% endif %}
+
+            </a>
             
-            {{ task }}
+            {{ task["task"] }}
         
             <a href="/delete/{{ loop.index0 }}">
 
