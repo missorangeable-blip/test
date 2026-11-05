@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from datetime import date
 import json
                                            #requestはフォームに入力されたデータを受け取るための部品
 app = Flask(__name__)
@@ -6,7 +7,7 @@ app = Flask(__name__)
 # 起動時にJSONを読み込む
 try:
     with open("tasks.json", "r", encoding="utf-8") as file:
-        tasks = json.load(file)
+        tasks = json.load(file) # JSONからPythonへ
 
 except FileNotFoundError:
     tasks = []
@@ -17,7 +18,7 @@ def save_tasks():
         json.dump(
             tasks,
             file,
-            ensure_ascii=False,
+            ensure_ascii=False,     # PythonからJSONへ
             indent=4
         )
 
@@ -29,21 +30,25 @@ def home():
 
         task = request.form["task"]  #HTMLの name="task" に入っていた文字を取得
 
-        deadline = request.form["deadline"]
+        deadline = request.form["deadline"]  #HTMLの name="deadline" に入っていた文字を取得
 
-        if task:
+        priority = request.form["priority"]  #HTMLの name="priority" に入っていた文字を取得
+
+        if task:              # 実際にJSONファイルに記録される際の書き方の指定
             tasks.append(
                 {
                     "task": task,
                     "done": False,
-                    "deadline": deadline
+                    "deadline": deadline,
+                    "priority": priority
                 }
             )  #リストの最後に追加
             save_tasks()
 
     return render_template(
         "index.html",
-        tasks=tasks
+        tasks=tasks,
+        today=str(date.today()) # 今日の日付
     )
 
 # タスク削除

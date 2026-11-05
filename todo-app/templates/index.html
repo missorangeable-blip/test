@@ -27,6 +27,22 @@
         name="deadline"
     >
 
+    <select name="priority">
+
+        <option value="high">
+            高
+        </option>
+
+        <option value="medium">    <!--優先度-->
+            中
+        </option>
+
+        <option value="low">
+            低
+        </option>
+
+    </select>
+
     <button type="submit">
         追加
     </button>
@@ -58,6 +74,23 @@
 
             <div class="task-text">
 
+                <div class="priority {{ task['priority'] }}">
+
+                    {% if task["priority"] == "high" %}
+
+                        🔴 高
+                    
+                    {% elif task["priority"] == "medium" %}
+
+                        🟡 中
+                    
+                    {% else %}
+
+                        🟢 低
+                    
+                    {% endif %}
+                </div>
+
                 {% if task["done"] %}
 
                     <span class="completed">
@@ -73,6 +106,16 @@
                 {% endif %}
 
                 <div class="deadline">
+
+                    {% if task["deadline"] < today and not
+                task["done"] %}
+
+                        <span class="overdue">
+                            ⚠ 期限切れ
+                        </span>
+
+                    {% endif %}
+
                     期限: {{ task["deadline"] }}
                 </div>
 

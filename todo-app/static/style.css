@@ -71,3 +71,27 @@ li {
     display: flex;
     flex-direction: column;
 }
+
+.overdue {
+    color: red;
+    font-weight: bold;
+    display: block;
+}
+
+.priority {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.high {
+    color: red;
+}
+
+.medium {
+    color: orange;
+}
+
+.low {
+    color: green;
+}

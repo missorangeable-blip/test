@@ -2,6 +2,25 @@
     {
         "task": "pythonの勉強",
         "done": false,
-        "deadline": "2026-11-20"
+        "deadline": "2026-11-19",
+        "priority": "high"
+    },
+    {
+        "task": "買い物",
+        "done": false,
+        "deadline": "2026-11-06",
+        "priority": "medium"
+    },
+    {
+        "task": "ゲーム",
+        "done": false,
+        "deadline": "2026-11-05",
+        "priority": "low"
+    },
+    {
+        "task": "掃除",
+        "done": false,
+        "deadline": "2026-11-03",
+        "priority": "medium"
     }
 ]
