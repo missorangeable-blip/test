@@ -45,9 +45,23 @@ def home():
             )  #リストの最後に追加
             save_tasks()
 
+    priority_order = {
+        "high": 0,
+        "medium": 1,
+        "low": 2,
+    }
+        
+    sorted_tasks = sorted(
+        tasks,
+        key=lambda task: (
+           task["done"],
+            priority_order[task["priority"]]
+        )
+    )
+        
     return render_template(
         "index.html",
-        tasks=tasks,
+        tasks=sorted_tasks,
         today=str(date.today()) # 今日の日付
     )
 

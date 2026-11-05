@@ -7,7 +7,7 @@
     },
     {
         "task": "買い物",
-        "done": false,
+        "done": true,
         "deadline": "2026-11-06",
         "priority": "medium"
     },
