@@ -34,23 +34,42 @@
 
         <li>
 
-            <a href="/toggle/{{ loop.index0 }}">
+            <div class="task-info">
+
+                <a href="/toggle/{{ loop.index0 }}">
+
+                    {% if task["done"] %}
+
+                        ☑
+
+                    {% else %}
+
+                        ☐
+                
+                    {% endif %}
+
+                </a>
 
                 {% if task["done"] %}
 
-                    ☑
+                    <span class="completed">
+                        {{ task["task"] }}
+                    </span>
 
                 {% else %}
+            
+                    <span>
+                        {{ task["task"] }}
+                    </span>
 
-                    ☐
-                
                 {% endif %}
 
-            </a>
-            
-            {{ task["task"] }}
+            </div>
         
-            <a href="/delete/{{ loop.index0 }}">
+            <a
+                class="delete-link"
+                href="/delete/{{ loop.index0 }}"
+            >
 
                 削除
 
