@@ -1,6 +1,7 @@
 [
     {
         "task": "pythonの勉強",
-        "done": true
+        "done": false,
+        "deadline": "2026-11-20"
     }
 ]

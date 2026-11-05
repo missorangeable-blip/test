@@ -29,11 +29,14 @@ def home():
 
         task = request.form["task"]  #HTMLの name="task" に入っていた文字を取得
 
+        deadline = request.form["deadline"]
+
         if task:
             tasks.append(
                 {
                     "task": task,
-                    "done": False
+                    "done": False,
+                    "deadline": deadline
                 }
             )  #リストの最後に追加
             save_tasks()

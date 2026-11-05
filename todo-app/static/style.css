@@ -60,3 +60,14 @@ li {
     color: red;
     text-decoration: none;
 }
+
+.deadline {
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: 5px;
+}
+
+.task-text {
+    display: flex;
+    flex-direction: column;
+}
