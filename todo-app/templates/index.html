@@ -13,6 +13,20 @@
 
     <h1>Todoアプリ</h1>
 
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            Placeholder="タスクを検索"
+            value="{{ search_word }}"
+        >
+
+        <button type="submit">
+            検索
+        </button>
+
+    </form>
     <form method="POST">  
         <!--入力欄とボタンはセット-->
 
@@ -120,6 +134,10 @@
                 </div>
 
             </div>
+
+            <a href="/edit/{{ task['id'] }}">
+                編集
+            </a>
         
             <a
                 class="delete-link"

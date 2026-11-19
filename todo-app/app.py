@@ -46,6 +46,25 @@ def home():
             )  #リストの最後に追加
             save_tasks()
 
+    # 検索キーワード取得
+    search_word = request.args.get("search", "")
+
+    # 検索処理
+    if search_word:
+
+        filtered_tasks = []
+
+        for task in tasks:
+
+            if search_word in task["task"]:
+
+                filtered_tasks.append(task)
+
+    else:
+
+        filtered_tasks = tasks
+
+    # 優先度順にソート
     priority_order = {
         "high": 0,
         "medium": 1,
@@ -53,7 +72,7 @@ def home():
     }
         
     sorted_tasks = sorted(
-        tasks,
+        filtered_tasks,
         key=lambda task: (
            task["done"],
             priority_order[task["priority"]]
@@ -63,7 +82,8 @@ def home():
     return render_template(
         "index.html",
         tasks=sorted_tasks,
-        today=str(date.today()) # 今日の日付
+        today=str(date.today()), # 今日の日付
+        search_word=search_word
     )
 
 # タスク削除
@@ -81,6 +101,39 @@ def delete(task_id):
     save_tasks()
 
     return redirect("/")
+
+# タスク編集
+@app.route("/edit/<int:task_id>", methods=["GET", "POST"])
+def edit(task_id):
+
+    target_task = None
+
+    for task in tasks:
+
+        if task["id"] == task_id:
+
+            target_task = task
+
+            break
+
+# POST時の処理
+    if request.method == "POST":
+
+        target_task["task"] = request.form["task"]
+
+        target_task["deadline"] = request.form["deadline"]
+
+        target_task["priority"] = request.form["priority"]
+
+        save_tasks()
+
+        return redirect("/")
+
+# GET時の処理
+    return render_template(
+        "edit.html",
+        task=target_task
+    )
 
 # タスク完了切り替え
 @app.route("/toggle/<int:task_id>")
