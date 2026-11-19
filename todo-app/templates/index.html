@@ -57,7 +57,7 @@
 
             <div class="task-info">
 
-                <a href="/toggle/{{ loop.index0 }}">
+                <a href="/toggle/{{ task['id'] }}">
 
                     {% if task["done"] %}
 
@@ -123,7 +123,7 @@
         
             <a
                 class="delete-link"
-                href="/delete/{{ loop.index0 }}"
+                href="/delete/{{ task['id'] }}"
             >
 
                 削除

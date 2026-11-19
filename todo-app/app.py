@@ -37,6 +37,7 @@ def home():
         if task:              # 実際にJSONファイルに記録される際の書き方の指定
             tasks.append(
                 {
+                    "id": len(tasks) + 1,
                     "task": task,
                     "done": False,
                     "deadline": deadline,
@@ -66,20 +67,32 @@ def home():
     )
 
 # タスク削除
-@app.route("/delete/<int:index>")
-def delete(index):
+@app.route("/delete/<int:task_id>")
+def delete(task_id):
 
-    tasks.pop(index)
+    for task in tasks:
+
+        if task["id"] == task_id:
+
+            tasks.remove(task)
+
+            break
 
     save_tasks()
 
     return redirect("/")
 
 # タスク完了切り替え
-@app.route("/toggle/<int:index>")
-def toggle(index):
+@app.route("/toggle/<int:task_id>")
+def toggle(task_id):
 
-    tasks[index]["done"] = not tasks[index]["done"]
+    for task in tasks:
+
+        if task["id"] == task_id:
+
+            task["done"] = not task["done"]
+
+            break
 
     save_tasks()
 

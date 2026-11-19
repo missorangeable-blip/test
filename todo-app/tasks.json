@@ -1,26 +1,23 @@
 [
     {
-        "task": "pythonの勉強",
-        "done": false,
+        "id": 1,
+        "task": "買い物",
+        "done": true,
+        "deadline": "2026-11-20",
+        "priority": "medium"
+    },
+    {
+        "id": 2,
+        "task": "勉強",
+        "done": true,
         "deadline": "2026-11-19",
         "priority": "high"
     },
     {
-        "task": "買い物",
-        "done": true,
-        "deadline": "2026-11-06",
-        "priority": "medium"
-    },
-    {
-        "task": "ゲーム",
-        "done": false,
-        "deadline": "2026-11-05",
-        "priority": "low"
-    },
-    {
+        "id": 3,
         "task": "掃除",
-        "done": false,
-        "deadline": "2026-11-03",
-        "priority": "medium"
+        "done": true,
+        "deadline": "2026-11-21",
+        "priority": "low"
     }
 ]
